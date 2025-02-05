@@ -1,0 +1,3 @@
+Wildfire Preparedness and Response Website
+
+Wildfires are becoming increasingly frequent and devastating, posing significant threats to communities, infrastructure, and ecosystems. This project aims to develop a web application that helps communities prepare for, respond to, and recover from wildfires by providing real-time alerts, preparedness tools, and collaboration features. The app will include emergency communication tools and resource coordination to assist both residents and first responders. Designed with accessibility and usability in mind, this system will feature user authentication, a dynamic database, and seamless frontend-backend communication, ensuring that critical information is available when it matters most.
