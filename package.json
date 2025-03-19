@@ -1,0 +1,20 @@
+{
+  "name": "fire-finder",
+  "version": "1.0.0",
+  "description": "Wildfire Preparedness and Response Website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RJ-Tabelon/Fire-Finder.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RJ-Tabelon/Fire-Finder/issues"
+  },
+  "homepage": "https://github.com/RJ-Tabelon/Fire-Finder#readme"
+}
