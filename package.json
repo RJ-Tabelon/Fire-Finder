@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/RJ-Tabelon/Fire-Finder/issues"
   },
-  "homepage": "https://github.com/RJ-Tabelon/Fire-Finder#readme"
+  "homepage": "https://github.com/RJ-Tabelon/Fire-Finder#readme",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongoose": "^8.12.1"
+  }
 }
