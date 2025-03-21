@@ -34,3 +34,20 @@ export const deleteUser = async (req, res) => {
         res.status(500).json({ success: false, message: "Server Error"});
     }
 };
+
+export const updateUser = async (req, res) => {
+    const { id } = req.params;
+
+    const user = req.body;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).json({ succcess: false, message: "User not found"});
+    }
+
+    try {
+        const updatedUser = await User.findByIdAndUpdate(id, user, {new: true});
+        res.status(200).json({ success: true, data: updatedUser});
+    } catch (error) {
+        res.status(500).json({ success: false, message: "Server Error"});
+    }
+};
