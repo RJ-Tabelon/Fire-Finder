@@ -18,3 +18,19 @@ export const createUser = async (req, res) => {
         res.status(500).json({ success: false, message: "Server Error"});
     }
 };
+
+export const deleteUser = async (req, res) => {
+    const { id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).json({ succcess: false, message: "User not found"});
+    }
+
+    try {
+        await User.findByIdAndDelete(id);
+        res.status(200).json({ success: true, message: "User deleted"});
+    } catch (error) {
+        console.log("Error in deleting product:", error.message);
+        res.status(500).json({ success: false, message: "Server Error"});
+    }
+};
