@@ -8,6 +8,9 @@ const app = express();
 
 // To run this through terminal, cd into backend folder and then enter
 // node .\backend\server.js
+// or
+// npm run dev
+
 app.listen(5001, () => {
     console.log('Server started at http://localhost:5001');
 });
