@@ -5,7 +5,7 @@ export const createUser = async (req, res) => {
     const user = req.body;
 
     if (!user.name || !user.password) {
-        return res.status(400).json({ success: false, message: "Please provide all fields."});
+        return res.status(400).json({ success: false, message: "Please provide all required fields."});
     }
 
     const newUser = new User(user);
