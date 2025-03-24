@@ -1,20 +1,18 @@
-// made by Dia Fallon on 3/19
-// This will function as the main file for the backend of the project
-
-// To run this through terminal, cd into backend folder and then enter
-// node .\backend\server.js
-// or
-// npm run dev
-
-// import and export syntax available from "type": "module", in package.json
 import express from 'express';
+import dotenv from 'dotenv';
+import { connectDB } from './config/db.js';
+import userRoutes from "./routes/user.route.js";
+
+dotenv.config();
 
 const app = express();
+const PORT = process.env.PORT || 5000;
 
-app.get("/", (req,res) => {
-    res.send("Server is ready");
-});
+app.use(express.json());
 
-app.listen(5001, () => {
-    console.log('Server started at http://localhost:5001');
+app.use("/api/users", userRoutes);
+
+app.listen(PORT, () => {
+    connectDB();
+    console.log("Server started at http://localhost:" + PORT);
 });
