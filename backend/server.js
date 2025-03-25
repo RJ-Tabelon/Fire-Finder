@@ -10,6 +10,10 @@ const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
 
+app.get("/", (req,res) => {
+    res.send("Server is ready");
+});
+
 app.use("/api/users", userRoutes);
 
 app.listen(PORT, () => {
