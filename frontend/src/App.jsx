@@ -3,33 +3,56 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
+
 function App() {
-  const [count, setCount] = useState(0)
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleLogin = () => {
+    // In a real app, you'd validate credentials here
+    if (username && password) {
+      setIsLoggedIn(true);
+    } else {
+      alert("Please enter a username and password");
+    }
+  };
+
+  if (isLoggedIn) {
+    return (
+      <div style={{ textAlign: 'center', marginTop: '100px' }}>
+        <h1>This is where the map will be 🗺️</h1>
+      </div>
+    );
+  }
 
   return (
-    <>
+    <div style={{ maxWidth: '300px', margin: '100px auto', textAlign: 'center' }}>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      <h1>Fire Finder🔥</h1>
+    </div>
+      <h2>Login</h2>
+      <input
+        type="text"
+        placeholder="Username"
+        value={username}
+        onChange={e => setUsername(e.target.value)}
+        style={{ padding: '8px', marginBottom: '10px', width: '100%' }}
+      />
+      <br />
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={e => setPassword(e.target.value)}
+        style={{ padding: '8px', marginBottom: '10px', width: '100%' }}
+      />
+      <br />
+      <button onClick={handleLogin} style={{ padding: '8px 16px' }}>
+        Login
+      </button>
+    </div>
+  );
 }
 
-export default App
+export default App;
