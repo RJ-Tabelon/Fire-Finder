@@ -61,3 +61,25 @@ export const updateUser = async (req, res) => {
         res.status(500).json({ success: false, message: "Server Error"});
     }
 };
+
+export const loginUser = async (req, res) => {
+    const { name, password } = req.body;
+  
+    if (!name || !password) {
+      return res.status(400).json({ success: false, message: "Missing credentials." });
+    }
+  
+    try {
+      const user = await User.findOne({ name });
+  
+      if (!user || user.password !== password) {
+        return res.status(401).json({ success: false, message: "Invalid credentials." });
+      }
+  
+      res.status(200).json({ success: true, message: "Login successful", data: user });
+    } catch (error) {
+      console.error("Login error:", error.message);
+      res.status(500).json({ success: false, message: "Server error" });
+    }
+  };
+  
