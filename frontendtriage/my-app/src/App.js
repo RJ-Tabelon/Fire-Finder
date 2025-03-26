@@ -1,4 +1,5 @@
-import './App.css';
+import Navbar from './Navbar';
+import Home from './Home';
 
 function App() {
   const title = 'FireFinder User Login'
@@ -6,7 +7,9 @@ function App() {
 
   return (
     <div className="App">
+      <Navbar />
       <div className="content">
+        <Home />
         <h1>{ title }</h1>
         <p>Please enter all required fields.</p>
 
