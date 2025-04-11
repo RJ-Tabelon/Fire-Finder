@@ -8,6 +8,13 @@ export const createUser = async (req, res) => {
         return res.status(400).json({ success: false, message: "Please provide all required fields."});
     }
 
+    const { name } = req.body;
+
+    const check_user = await User.findOne({ name });
+    if(check_user){
+        return res.status(404).json({ success: false, message: "Username already exists."});
+    }
+
     const newUser = new User(user);
 
     try {
