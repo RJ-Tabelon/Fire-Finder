@@ -1,16 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Monofett&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Aclonica&display=swap');
+
+/* Global theme styles */
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
 }
 
 a {
@@ -30,23 +42,38 @@ body {
   min-height: 100vh;
 }
 
+#root {
+  width: 100%;
+}
+
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
 
-button {
+/* Form buttons only */
+.form-button {
   border-radius: 8px;
-  border: 1px solid transparent;
+  border: 1px solid #ccc;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #f0f0f0;
+  color: #333;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: background-color 0.25s, border-color 0.25s;
 }
-button:hover {
+.form-button:hover {
+  background-color: #e6e6e6;
+}
+
+/* Map page button styles */
+button:not(.form-button) {
+  background-color: #1a1a1a;
+  border: 1px solid transparent;
+}
+button:not(.form-button):hover {
   border-color: #646cff;
 }
 button:focus,
@@ -54,15 +81,140 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+/* MAP PAGE STYLES */
+.header {
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+  border: 3px solid #9f5255;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #FFCF9D;
+  height: 105px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  padding: 0 50px;
+  order: 4px solid #9f5255;
+  line-height: 1;
+}
+
+.header-container h1 {
+  font-size: 96px;
+  font-family: 'Monofett', cursive;
+  font-weight: 550;
+  color: #9f5255;
+  margin: 0;
+  transform: translateY(-10%);
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 55px;
+  align-items: center;
+}
+
+.nav-buttons button {
+  font-family: 'Aclonica', sans-serif;
+  font-size: 36px;
+  background: transparent;
+  border: none;
+  color: #9f5255;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.nav-buttons button:hover {
+  color: #6f3437;
+}
+
+.map {
+  width: 100vw;
+  height: 100vh;
+}
+
+.loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+}
+.loader img {
+  width: 400px;
+}
+.loader h1 {
+  margin-top: -100px;
+}
+
+.location-info {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 550;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  letter-spacing: 0.5px;
+}
+
+.location-info h2 {
+  margin: 0 0 8px 0;
+  font-size: 21px;
+  font-weight: 900;
+}
+
+.location-info ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.location-info li {
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+
+.location-info a {
+  font-weight: bold;
+  text-decoration: underline;
+  color: #646cff;
+  outline: none;
+}
+.location-info a:hover {
+  color: #4444dd;
+  outline: none;
+}
+
+/* LOADING PAGE STYLES */
+.loader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  text-align: center;
+  background-color: #FFF8E6; 
+  padding-bottom: 118px;
+}
+
+.loader-text {
+  font-family: 'Aclonica', sans-serif;
+  font-size: 40px;
+  margin-top: 0px;
+  color: #9f5255;
+  text-align: center;
+}
+
+.loader-gif {
+  width: 400px;
+  height: auto;
+  display: block;
 }
