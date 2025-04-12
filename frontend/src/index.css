@@ -68,19 +68,6 @@ h1 {
   background-color: #e6e6e6;
 }
 
-/* Map page button styles */
-button:not(.form-button) {
-  background-color: #1a1a1a;
-  border: 1px solid transparent;
-}
-button:not(.form-button):hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
 /* MAP PAGE STYLES */
 .header {
   position: fixed;
@@ -98,13 +85,12 @@ button:focus-visible {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #FFCF9D;
+  background: #FFD6AC;
   height: 105px;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   padding: 0 50px;
   order: 4px solid #9f5255;
-  line-height: 1;
 }
 
 .header-container h1 {
@@ -114,6 +100,7 @@ button:focus-visible {
   color: #9f5255;
   margin: 0;
   transform: translateY(-10%);
+  line-height: 1;
 }
 
 .nav-buttons {
@@ -138,20 +125,6 @@ button:focus-visible {
 .map {
   width: 100vw;
   height: 100vh;
-}
-
-.loader {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 80vh;
-}
-.loader img {
-  width: 400px;
-}
-.loader h1 {
-  margin-top: -100px;
 }
 
 .location-info {
@@ -207,14 +180,14 @@ button:focus-visible {
 
 .loader-text {
   font-family: 'Aclonica', sans-serif;
-  font-size: 40px;
+  font-size: 25px;
   margin-top: 0px;
   color: #9f5255;
   text-align: center;
 }
 
 .loader-gif {
-  width: 400px;
+  width: 180px;
   height: auto;
   display: block;
 }

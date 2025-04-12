@@ -1,26 +1,53 @@
 import { GoogleMap, useJsApiLoader, InfoWindow } from '@react-google-maps/api';
 import LocationMarker from './LocationMarker.jsx';
 import LocationInfoBox from './LocationInfoBox.jsx';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 const containerStyle = {
   width: '100vw',
   height: '100vh'
 };
 
-const Map = ({ eventData, center = { lat: 39.8283, lng: -98.5795 }, zoom = 6 }) => {
+const defaultCenter = { lat: 39.8283, lng: -98.5795 };
+
+const Map = ({ eventData }) => {
   const [locationInfo, setLocationInfo] = useState(null);
-  
+  const mapRef = useRef(null);
+
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: import.meta.env.VITE_MAP_API,
   });
+
+  const onMapLoad = (map) => {
+    mapRef.current = map;
+  };
+
+  const handleMarkerClick = (ev, lat, lng, fireName, fireLocation) => {
+    const info = {
+      fire_name: fireName,
+      fire_location: fireLocation,
+      date: ev.geometries[0].date,
+      source_name: ev.sources[0].id,
+      source_link: ev.sources[0].url,
+      specific_link: ev.link,
+      lat,
+      lng
+    };
+
+    setLocationInfo(info);
+
+    if (mapRef.current) {
+      mapRef.current.panTo({ lat, lng });
+    }
+  };
 
   return isLoaded ? (
     <div style={{ position: 'relative' }}>
       <GoogleMap
         mapContainerStyle={containerStyle}
-        center={center}
-        zoom={zoom}
+        center={defaultCenter}
+        zoom={6}
+        onLoad={onMapLoad}
         options={{
           fullscreenControl: true,
           zoomControl: true,
@@ -46,26 +73,17 @@ const Map = ({ eventData, center = { lat: 39.8283, lng: -98.5795 }, zoom = 6 }) 
             const [fireName, fireLocation] = ev.title.split(',').length > 1
               ? [ev.title.split(',')[0].trim(), ev.title.split(',').slice(1).join(',').trim()]
               : [ev.title, 'Unknown Location'];
+
             return (
               <LocationMarker
                 key={index}
                 lat={lat}
                 lng={lng}
-                onClick={() =>
-                  setLocationInfo({
-                    fire_name: fireName,
-                    fire_location: fireLocation,
-                    date: ev.geometries[0].date,
-                    source_name: ev.sources[0].id,
-                    source_link: ev.sources[0].url,
-                    specific_link: ev.link,
-                    lat,
-                    lng
-                  })
-                }
+                onClick={() => handleMarkerClick(ev, lat, lng, fireName, fireLocation)}
               />
             );
           })}
+
         {locationInfo && (
           <InfoWindow
             position={{ lat: locationInfo.lat, lng: locationInfo.lng }}
