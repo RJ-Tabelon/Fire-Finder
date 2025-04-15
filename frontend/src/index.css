@@ -1,53 +1,66 @@
+/* ─────────────────────────────────────────────────────────────
+   index.css
+   ─────────────────────────────────────────────────────────────
+   PURPOSE:
+   This file contains global CSS styling for the entire Fire Finder
+   web application. It defines layout, typography, color schemes,
+   and custom styles for components such as headers, forms,
+   loaders, and the interactive map. Styles are organized into
+   logical sections for clarity.
+   ───────────────────────────────────────────────────────────── */
+
 /* ───── IMPORT FONTS ───── */
-@import url('https://fonts.googleapis.com/css2?family=Monofett&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Aclonica&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Monofett&display=swap'); /* For large header titles */
+@import url('https://fonts.googleapis.com/css2?family=Aclonica&display=swap'); /* For form and button text */
 
 /* ───── ROOT & GLOBAL STYLES ───── */
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif; /* Base font */
+  line-height: 1.5;                                             /* Improves text readability */
+  font-weight: 400;                                             /* Default font weight */
+  color-scheme: light dark;                                     /* Enables theme switching */
+  color: rgba(255, 255, 255, 0.87);                              /* Light text color by default */
+  background-color: #242424;                                    /* Dark background by default */
+  font-synthesis: none;                                         /* Disables automatic bold/italic */
+  text-rendering: optimizeLegibility;                           /* Improves font appearance */
+  -webkit-font-smoothing: antialiased;                          /* Smoother fonts on macOS */
+  -moz-osx-font-smoothing: grayscale;                           /* Smoother fonts on Firefox/macOS */
 }
 
+/* Light theme overrides */
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    color: #213547;              /* Darker text */
+    background-color: #ffffff;   /* White background */
   }
-
   a:hover {
-    color: #747bff;
+    color: #747bff;              /* Light purple on hover */
   }
 }
 
+/* Body setup to center content */
 body {
   margin: 0;
   display: flex;
-  place-items: center;
+  place-items: center;        /* Aligns content vertically and horizontally */
   min-width: 320px;
-  min-height: 100vh;
-  overflow: hidden;
+  min-height: 100vh;          /* Full viewport height */
+  overflow: hidden;           /* Prevents scrollbars */
 }
 
+/* Ensure root container fills full width */
 #root {
   width: 100%;
 }
 
 a {
   font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+  color: #646cff;              /* Default link color */
+  text-decoration: inherit;    /* No underline by default */
 }
 
 a:hover {
-  color: #535bf2;
+  color: #535bf2;              /* Darker blue on hover */
 }
 
 /* ───── TYPOGRAPHY ───── */
@@ -59,7 +72,7 @@ h1, h2 {
 h1.monofett {
   font-family: 'Monofett', cursive;
   font-size: 8rem;
-  color: #9F5255;
+  color: #9F5255;              /* Deep red */
   text-align: center;
   line-height: 1;
 }
@@ -68,7 +81,7 @@ h1.monofett {
 .header {
   position: fixed;
   width: 100%;
-  z-index: 100;
+  z-index: 100;                /* Stays above other content */
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
 }
@@ -77,7 +90,7 @@ h1.monofett {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #ffdbb6;
+  background: #ffdbb6;         /* Warm yellow */
   height: 90px;
   padding: 0 30px;
   border-bottom: 2.5px solid #9f5255;
@@ -97,7 +110,7 @@ h1.monofett {
 
 .nav-buttons {
   display: flex;
-  gap: 55px;
+  gap: 55px;                  /* Space between buttons */
   align-items: center;
 }
 
@@ -108,11 +121,11 @@ h1.monofett {
   border: none;
   color: #9f5255;
   cursor: pointer;
-  transition: color 0.2s ease;
+  transition: color 0.2s ease; /* Smooth hover transition */
 }
 
 .nav-buttons button:hover {
-  color: #6f3437;
+  color: #6f3437;              /* Darker red on hover */
 }
 
 /* ───── LOGIN & SIGNUP ───── */
@@ -189,10 +202,7 @@ h1.monofett {
   justify-content: space-between;
 }
 
-.form-box {
-  background-color: #FFD6AC;
-}
-
+.form-box,
 .signup-form-box {
   background-color: #FFD6AC;
 }
@@ -235,7 +245,6 @@ h1.monofett {
   font-weight: bold;
   text-shadow: 1px 1px 2px #9f5255;
 }
-
 
 .form-input:focus {
   outline: none;

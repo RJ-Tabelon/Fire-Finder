@@ -1,23 +1,35 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+// ─────────────────────────────────────────────────────────────
+// SignUpPage.jsx
+// ─────────────────────────────────────────────────────────────
+// PURPOSE:
+// This component provides a sign-up interface to register new users.
+// It collects a username and password, sends a request to the backend
+// to create the user, shows a success message, and redirects to login.
+// ─────────────────────────────────────────────────────────────
+
+import { useState } from 'react'; // For managing form and message states
+import { useNavigate } from 'react-router-dom'; // For page redirection
+import axios from 'axios'; // HTTP client to communicate with backend
 
 function SignUpPage() {
-  const [form, setForm] = useState({ name: '', password: '' });
-  const [message, setMessage] = useState('');
-  const navigate = useNavigate();
+  const [form, setForm] = useState({ name: '', password: '' }); // User input
+  const [message, setMessage] = useState(''); // Feedback message
+  const navigate = useNavigate(); // Function to change routes
 
+  // Updates form values dynamically
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  // Handle form submission to register a new account
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5001/api/users', form);
+      await axios.post('http://localhost:5001/api/users', form); // Send user data to backend
       setMessage('🌲 ACCOUNT CREATED SUCCESSFULLY !');
-      setTimeout(() => navigate('/'), 1500);
+      setTimeout(() => navigate('/'), 1500); // Go to login after delay
     } catch (err) {
+      // Show error message if sign-up fails
       setMessage(err.response?.data?.message || 'ERROR CREATING ACCOUNT ❌');
     }
   };
@@ -51,6 +63,7 @@ function SignUpPage() {
         </div>
       </div>
 
+      {/* Show response message */}
       {message && (
         <p className={message.startsWith('🌲') ? 'form-message-success' : 'form-message-error'}>
           {message}
