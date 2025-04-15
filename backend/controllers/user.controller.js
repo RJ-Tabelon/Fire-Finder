@@ -5,7 +5,7 @@ export const createUser = async (req, res) => {
     const user = req.body;
 
     if (!user.name || !user.password) {
-        return res.status(400).json({ success: false, message: "Please provide all required fields."});
+        return res.status(400).json({ success: false, message: "PLEASE PROVIDE ALL REQUIRED FIELDS❗"});
     }
 
     const { name } = req.body;
@@ -21,8 +21,8 @@ export const createUser = async (req, res) => {
         await newUser.save();
         res.status(201).json({ success: true, data: newUser})
     } catch (error) {
-        console.error("Error in creating user:", error.message);
-        res.status(500).json({ success: false, message: "Server Error"});
+        console.error("ERROR IN CREATING USER:", error.message);
+        res.status(500).json({ success: false, message: "SERVER ERROR"});
     }
 };
 
@@ -30,15 +30,15 @@ export const deleteUser = async (req, res) => {
     const { id } = req.params;
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(404).json({ succcess: false, message: "User not found"});
+        return res.status(404).json({ succcess: false, message: "USER NOT FOUND"});
     }
 
     try {
         await User.findByIdAndDelete(id);
-        res.status(200).json({ success: true, message: "User deleted"});
+        res.status(200).json({ success: true, message: "USER DELETED"});
     } catch (error) {
-        console.log("Error in deleting product:", error.message);
-        res.status(500).json({ success: false, message: "Server Error"});
+        console.log("ERROR IN DELETING PRODUCT:", error.message);
+        res.status(500).json({ success: false, message: "SERVER ERROR"});
     }
 };
 
@@ -47,8 +47,8 @@ export const getUsers = async (req, res) => {
         const users = await User.find({});
         res.status(200).json({ success: true, data: users});
     } catch (error) { 
-        console.log("Error in fetching products:", error.message);
-        res.status(500).json({ success: false, message: "Server Error"});
+        console.log("ERROR IN FETCHING PRODUCTS:", error.message);
+        res.status(500).json({ success: false, message: "SERVER ERROR"});
     }
 };
 
@@ -65,7 +65,7 @@ export const updateUser = async (req, res) => {
         const updatedUser = await User.findByIdAndUpdate(id, user, {new: true});
         res.status(200).json({ success: true, data: updatedUser});
     } catch (error) {
-        res.status(500).json({ success: false, message: "Server Error"});
+        res.status(500).json({ success: false, message: "SERVER ERROR"});
     }
 };
 
@@ -85,8 +85,8 @@ export const loginUser = async (req, res) => {
   
       res.status(200).json({ success: true, message: "LOGIN SUCCESSFUL", data: user });
     } catch (error) {
-      console.error("Login error:", error.message);
-      res.status(500).json({ success: false, message: "Server error" });
+      console.error("LOGIN ERROR:", error.message);
+      res.status(500).json({ success: false, message: "SERVER ERROR" });
     }
   };
   

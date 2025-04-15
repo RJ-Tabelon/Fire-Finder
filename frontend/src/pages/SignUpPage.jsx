@@ -15,15 +15,16 @@ function SignUpPage() {
     e.preventDefault();
     try {
       await axios.post('http://localhost:5001/api/users', form);
-      setMessage('✅ Account created successfully!');
+      setMessage('🌲 ACCOUNT CREATED SUCCESSFULLY !');
       setTimeout(() => navigate('/'), 1500);
     } catch (err) {
-      setMessage(err.response?.data?.message || '❌ Error creating account');
+      setMessage(err.response?.data?.message || 'ERROR CREATING ACCOUNT ❌');
     }
   };
 
   return (
-    <div className="form-container">
+    <div className="form-container signup-container">
+      <h2 className="signup-heading">CREATE ACCOUNT</h2>
       <div className="form-box">
         <form onSubmit={handleSubmit} className="form-style">
           <input
@@ -50,9 +51,8 @@ function SignUpPage() {
         </div>
       </div>
 
-      {/* Message below the form box */}
       {message && (
-        <p className={message.startsWith('✅') ? 'form-message-success' : 'form-message-error'}>
+        <p className={message.startsWith('🌲') ? 'form-message-success' : 'form-message-error'}>
           {message}
         </p>
       )}

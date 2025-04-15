@@ -19,7 +19,7 @@ function LoginPage() {
       const name = res.data.data.name;
       const capitalizedName = name.charAt(0).toUpperCase() + name.slice(1);
 
-      setMessage(`WELCOME, ${capitalizedName}! 🌲`);
+      setMessage(`🌲 WELCOME, ${capitalizedName} !`);
       setTimeout(() => navigate('/map'), 1000);
     } catch (err) {
       setMessage(err.response?.data?.message || 'LOGIN FAILED');
@@ -61,7 +61,7 @@ function LoginPage() {
 
       </div>
       {message && (
-        <p className={message.startsWith('WELCOME') ? 'form-message-success' : 'form-message-error'}>
+        <p className={message.startsWith('🌲') ? 'form-message-success' : 'form-message-error'}>
           {message}
         </p>
       )}

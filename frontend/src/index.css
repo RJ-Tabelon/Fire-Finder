@@ -1,7 +1,8 @@
+/* ───── IMPORT FONTS ───── */
 @import url('https://fonts.googleapis.com/css2?family=Monofett&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Aclonica&display=swap');
 
-/* ───── GLOBAL STYLES ───── */
+/* ───── ROOT & GLOBAL STYLES ───── */
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -50,6 +51,11 @@ a:hover {
 }
 
 /* ───── TYPOGRAPHY ───── */
+h1, h2 {
+  margin: 0;
+  padding: 0;
+}
+
 h1.monofett {
   font-family: 'Monofett', cursive;
   font-size: 8rem;
@@ -58,152 +64,11 @@ h1.monofett {
   line-height: 1;
 }
 
-h1, h2 {
-  margin: 0;
-  padding: 0;
-}
-
-/* ───── LOGIN & SIGNUP ───── */
-.form-container {
-  font-family: 'Aclonica', sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  padding-top: 45px;
-  height: 100vh;
-  width: 100vw;
-  background-color: #FFD6AC;
-}
-
-.signup-container {
-  background-color: #f9f9f9;
-}
-
-.form-signup-wrapper {
-  margin-top: 50px;     
-  margin-bottom: 10px;  
-}
-
-.form-signup-text {
-  margin-top: 15px;
-  margin-bottom: 0;
-  font-family: 'Aclonica', sans-serif;
-  font-size: 14px;
-  color: white;
-}
-
-.signup-link {
-  color: #9F5255;
-  cursor: pointer;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.signup-link:hover {
-  color: #6f3437;
-}
-
-/* logo positioning */
-.logo-container {
-  margin-top: 15px;
-  margin-bottom: 40px;
-}
-
-/* box wrapping form */
-.form-box {
-  background-color: #FFB38E;
-  padding-top: 30px;
-  padding-bottom: 15px;
-  padding-right: 40px;
-  padding-left: 40px;
-  border-radius: 20px;
-  border: 2.5px solid #9f5255;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  width: 550px;
-  text-align: center;
-  line-height: 1;
-  display: flex; 
-  flex-direction: column; 
-  justify-content: space-between;
-}
-
-/* form input layout */
-.form-style {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  width: 100%;
-  padding-top: 0; 
-}
-
-/* input field */
-.form-input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px; 
-  border: 1px solid #FFF8E6;
-  background-color: #FFF8E6;
-  border-radius: 8px;
-  font-family: 'Aclonica', sans-serif;
-  font-size: 16px;
-  color: #9f5255;
-}
-
-.form-input::placeholder {
-  color: #E16A5466;
-}
-
-.form-input:focus {
-  outline: none;
-  border-color: #9f5255;
-  box-shadow: 0 0 5px rgba(159, 82, 85, 0.5);
-}
-
-/* button */
-.form-button {
-  width: 150px;
-  border-radius: 8px;
-  border: none;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #9F5255;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.25s, border-color 0.25s;
-}
-
-.form-button:hover {
-  background-color: #6f3437;
-}
-
-/* message */
-.form-message-success {
-  color: #3b873e; 
-  font-family: 'Aclonica', sans-serif;
-  font-size: 14px;
-  margin-top: 40px;
-  margin-bottom: 0;
-}
-
-.form-message-error {
-  color: #ef3838; 
-  font-family: 'Aclonica', sans-serif;
-  font-size: 14px;
-  margin-top: 40px;
-  margin-bottom: 0;
-}
-
-
 /* ───── HEADER ───── */
 .header {
   position: fixed;
   width: 100%;
   z-index: 100;
-  border: none;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
 }
@@ -212,12 +77,12 @@ h1, h2 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #FFD6AC;
+  background: #ffdbb6;
   height: 90px;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
   padding: 0 30px;
   border-bottom: 2.5px solid #9f5255;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 
 .header-container h1 {
@@ -248,6 +113,169 @@ h1, h2 {
 
 .nav-buttons button:hover {
   color: #6f3437;
+}
+
+/* ───── LOGIN & SIGNUP ───── */
+.form-container {
+  font-family: 'Aclonica', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 45px;
+  height: 100vh;
+  width: 100vw;
+  background-color: #ffdbb6;
+}
+
+.signup-container {
+  background-color: #FFF8E6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100vh;
+  overflow: hidden;
+  padding-top: 160px;
+}
+
+.signup-container .form-box {
+  background-color: #FFD6AC;
+}
+
+.form-signup-wrapper {
+  margin: 50px 0 10px;
+}
+
+.signup-heading {
+  font-family: 'Aclonica', sans-serif;
+  font-size: 3rem;
+  color: #9F5255;
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+}
+
+.form-signup-text {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #ffffff;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px #9f5255;
+}
+
+.signup-link {
+  color: #9F5255;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: bold;
+  text-shadow: none;
+}
+
+.signup-link:hover {
+  color: #6f3437;
+}
+
+/* ───── FORM STYLING ───── */
+.form-box,
+.signup-form-box {
+  padding: 30px 40px 15px;
+  border-radius: 20px;
+  border: 2px solid #9f5255;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  width: 550px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.form-box {
+  background-color: #FFD6AC;
+}
+
+.signup-form-box {
+  background-color: #FFD6AC;
+}
+
+.logo-container {
+  margin: 15px 0 40px;
+}
+
+.form-style {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+/* ───── INPUTS ───── */
+.form-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #FFF8E6;
+  background-color: #FFF8E6;
+  border-radius: 8px;
+  font-family: 'Aclonica', sans-serif;
+  font-size: 16px;
+  color: #9F5255;
+}
+
+.form-input::placeholder {
+  color: #9F5255A1
+}
+
+.signup-container .form-input::placeholder {
+  color: #9F5255A1
+}
+
+.signup-container .form-signup-text {
+  color: #ffffff;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px #9f5255;
+}
+
+
+.form-input:focus {
+  outline: none;
+  border-color: #9f5255;
+  box-shadow: 0 0 5px rgba(159, 82, 85, 0.5);
+}
+
+/* ───── BUTTONS ───── */
+.form-button {
+  width: 150px;
+  border-radius: 8px;
+  border: none;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #9F5255;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.25s;
+}
+
+.form-button:hover {
+  background-color: #6f3437;
+}
+
+/* ───── FORM MESSAGES ───── */
+.form-message-success,
+.form-message-error {
+  font-family: 'Aclonica', sans-serif;
+  font-size: 14px;
+  margin-top: 40px;
+}
+
+.form-message-success {
+  color: #3b873e;
+}
+
+.form-message-error {
+  color: #ef3838;
 }
 
 /* ───── MAP PAGE ───── */
@@ -306,9 +334,9 @@ h1, h2 {
   align-items: center;
   height: 100vh;
   width: 100vw;
-  text-align: center;
   background-color: #FFF8E6;
   padding-bottom: 118px;
+  text-align: center;
 }
 
 .loader-text {
@@ -316,7 +344,6 @@ h1, h2 {
   font-size: 17px;
   margin-top: 0;
   color: #9f5255;
-  text-align: center;
 }
 
 .loader-gif {
