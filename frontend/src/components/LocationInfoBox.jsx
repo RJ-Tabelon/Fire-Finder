@@ -1,3 +1,12 @@
+// ─────────────────────────────────────────────────────────────
+// LocationInfoBox.jsx
+// ─────────────────────────────────────────────────────────────
+// PURPOSE:
+// This component displays detailed information about a wildfire
+// when a user clicks on a location marker on the map. It shows
+// the fire's name, location, date, source, and relevant links.
+// ─────────────────────────────────────────────────────────────
+
 const LocationInfoBox = ({ info }) => {
   // Format the date from raw ISO string into a readable format (e.g. Apr 15, 2025)
   const formattedDate = new Date(info.date).toLocaleString('en-US', {
