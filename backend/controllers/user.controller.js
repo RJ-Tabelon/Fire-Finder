@@ -5,16 +5,15 @@ export const createUser = async (req, res) => {
     const user = req.body;
 
     if (!user.name || !user.password) {
-        return res.status(400).json({ success: false, message: "PLEASE PROVIDE ALL REQUIRED FIELDS❗"});
+        return res.status(400).json({ success: false, message: "PLEASE PROVIDE ALL REQUIRED FIELDS !"});
     }
 
-    const { name } = req.body;
+    const existingUser = await User.findOne({ name: user.name });
 
-    const check_user = await User.findOne({ name });
-    if(check_user){
-        return res.status(404).json({ success: false, message: "Username already exists."});
+    if (existingUser) {
+    return res.status(400).json({ success: false, message: "USERNAME ALREADY EXISTS !" });
     }
-
+  
     const newUser = new User(user);
 
     try {
