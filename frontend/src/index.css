@@ -86,15 +86,15 @@ h1 {
   justify-content: space-between;
   align-items: center;
   background: #FFD6AC;
-  height: 105px;
+  height: 90px;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
-  padding: 0 50px;
+  padding: 0 30px;
   order: 4px solid #9f5255;
 }
 
 .header-container h1 {
-  font-size: 96px;
+  font-size: 85px;
   font-family: 'Monofett', cursive;
   font-weight: 550;
   color: #9f5255;
@@ -111,7 +111,7 @@ h1 {
 
 .nav-buttons button {
   font-family: 'Aclonica', sans-serif;
-  font-size: 36px;
+  font-size: 30px;
   background: transparent;
   border: none;
   color: #9f5255;
@@ -180,14 +180,14 @@ h1 {
 
 .loader-text {
   font-family: 'Aclonica', sans-serif;
-  font-size: 25px;
+  font-size: 20px;
   margin-top: 0px;
   color: #9f5255;
   text-align: center;
 }
 
 .loader-gif {
-  width: 180px;
+  width: 130px;
   height: auto;
   display: block;
 }
