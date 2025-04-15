@@ -58,7 +58,7 @@ export const updateUser = async (req, res) => {
     const user = req.body;
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(404).json({ succcess: false, message: "User not found"});
+        return res.status(404).json({ succcess: false, message: "USER NOT FOUND"});
     }
 
     try {
@@ -73,17 +73,17 @@ export const loginUser = async (req, res) => {
     const { name, password } = req.body;
   
     if (!name || !password) {
-      return res.status(400).json({ success: false, message: "Missing credentials." });
+      return res.status(400).json({ success: false, message: "MISSING CREDENTIALS ❌" });
     }
   
     try {
       const user = await User.findOne({ name });
   
       if (!user || user.password !== password) {
-        return res.status(401).json({ success: false, message: "Invalid credentials." });
+        return res.status(401).json({ success: false, message: "INAVLID CREDENTIALS ❌" });
       }
   
-      res.status(200).json({ success: true, message: "Login successful", data: user });
+      res.status(200).json({ success: true, message: "LOGIN SUCCESSFUL", data: user });
     } catch (error) {
       console.error("Login error:", error.message);
       res.status(500).json({ success: false, message: "Server error" });
