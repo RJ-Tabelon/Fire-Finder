@@ -1,0 +1,139 @@
+.settings-page {
+  background-color: #FFF8E6;
+  min-height: 100vh;
+  font-family: 'Aclonica', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.settings-heading {
+  font-family: 'Aclonica', sans-serif;
+  font-size: 3.3rem;
+  color: #9F5255;
+  margin-top: 140px;
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.settings-content {
+  max-width: 550px;
+  width: 100%;
+  padding: 0px 40px 25px;
+  background: #9f5255;
+  border-radius: 20px;
+  border: 2px solid #9f5255;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+.settings-content h3 {
+  font-size: 2rem;
+  color: #FFF8E6;
+  margin-bottom: 10px;
+}
+
+.account-info {
+  margin-bottom: 0px;
+}
+
+.account-info p {
+  font-size: 1.1rem;
+  margin: 8px 0;
+  color: #FFF8E6;
+}
+
+.set-location {
+  margin-bottom: 10px;
+}
+
+.set-location h3 {
+  font-size: 2rem;
+  color: #FFF8E6;
+  margin-bottom: 10px;
+}
+
+.set-location input {
+  width: 96%;
+  padding: 10px;
+  font-size: 1rem;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border: 1px solid #FFF8E6;
+  background-color: #FFF8E6; 
+  font-family: 'Aclonica', sans-serif;
+  color: #9f5255;
+}
+
+.set-location input::placeholder {
+  color: #9F5255A1;
+}
+
+.set-location input:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(159, 82, 85, 0.5);
+}
+
+.set-location-button {
+  padding: 12px 20px;
+  background-color: #FFF8E6;
+  color: #9f5255;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: background-color 0.25s;
+  font-family: 'Aclonica', sans-serif;
+  display: block;
+  margin: 0 auto;
+  width: 36%;
+}
+
+.set-location-button:hover {
+  background-color: #feedc2;
+}
+
+.logout-section {
+  width: 100%;
+  max-width: 550px;
+  text-align: center; 
+  margin-bottom: 60px;
+}
+
+.logout-button {
+  background-color: #d8534e;
+  color: #FFF8E6;
+  font-weight: bold;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 21%;
+  font-family: 'Aclonica', sans-serif;
+  font-size: 1.1rem;
+}
+
+.logout-button:hover {
+  background-color: #c9302c;
+}
+
+.capitalize {
+  text-transform: uppercase;
+  letter-spacing: 1.1px;
+}
+
+.lat-lng-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.lat-lng-container input {
+  width: 100%;
+}
+
+
