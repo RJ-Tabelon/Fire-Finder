@@ -47,4 +47,11 @@
   .nav-buttons button:hover {
     color: #6f3437;
   }
+
+  /* Highlight the active nav button */
+.nav-buttons .active-nav {
+  color: #6f3437;
+  text-decoration: underline;
+  font-weight: bold;
+}
   

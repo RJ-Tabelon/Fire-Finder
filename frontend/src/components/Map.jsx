@@ -61,7 +61,7 @@ const Map = ({ eventData }) => {
       <GoogleMap
         mapContainerStyle={containerStyle} // Apply size
         center={defaultCenter}             // Start position
-        zoom={6}                            // Zoom level
+        zoom={5}                            // Zoom level
         onLoad={onMapLoad}                 // Hook to get the map reference
         options={{                         // Map configuration
           fullscreenControl: true,
