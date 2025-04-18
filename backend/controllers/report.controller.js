@@ -41,15 +41,15 @@ export const deleteReport = async (req, res) => {
     }
 };
 
-// export const getUsers = async (req, res) => {
-//     try {
-//         const users = await User.find({});
-//         res.status(200).json({ success: true, data: users});
-//     } catch (error) { 
-//         console.log("ERROR IN FETCHING PRODUCTS:", error.message);
-//         res.status(500).json({ success: false, message: "SERVER ERROR"});
-//     }
-// };
+export const getReports = async (req, res) => {
+    try {
+        const reports = await Report.find({});
+        res.status(200).json({ success: true, data: reports});
+    } catch (error) { 
+        console.log("ERROR IN FETCHING REPORTS:", error.message);
+        res.status(500).json({ success: false, message: "SERVER ERROR"});
+    }
+};
 
 // export const updateUser = async (req, res) => {
 //     const { id } = req.params;
