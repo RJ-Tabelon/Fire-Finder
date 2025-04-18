@@ -7,11 +7,17 @@
 // ─────────────────────────────────────────────────────────────
 
 import Header from '../components/Header.jsx';
+import { useEffect } from 'react';
 import '../styles/about.css';
 import brianImage from '../assets/Brian.jpeg';
 import rjImage from '../assets/RJ.jpeg';
 
 function AboutPage() {
+  useEffect(() => {
+    // Makes sure it starts at the top of the page
+    window.scrollTo(0, 0);
+  }, []);
+
   const team = [
     { name: 'Dia Fallon', image: brianImage },
     { name: 'RJ Tabelon', image: rjImage },

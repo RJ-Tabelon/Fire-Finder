@@ -8,22 +8,13 @@
 
 import Header from '../components/Header.jsx';
 import { useEffect } from 'react';
+import { useBodyScroll } from '../hooks/useBodyScroll';
 import '../styles/fireSafety.css';
 
 function FireSafetyPage() {
 
   // makes sure you can scroll in the fire safety page
-  useEffect(() => {
-    // Save the original overflow value
-    const originalOverflow = document.body.style.overflow;
-    // Set body overflow to auto when component mounts
-    document.body.style.overflow = 'auto';
-    
-    // Clean up when component unmounts
-    return () => {
-      document.body.style.overflow = originalOverflow;
-    };
-  }, []);
+  useBodyScroll(true);
 
   return (
     <div className="fire-safety-page" style={{ overflow: 'auto' }}>
