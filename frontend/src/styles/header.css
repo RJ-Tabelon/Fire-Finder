@@ -1,0 +1,50 @@
+.header {
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+  
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffdbb6;
+    height: 90px;
+    padding: 0 30px;
+    border-bottom: 2.5px solid #9f5255;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+  
+  .header-container h1 {
+    font-size: 85px;
+    font-family: 'Monofett', cursive;
+    font-weight: 550;
+    color: #9f5255;
+    margin: 0;
+    transform: translateY(-10%);
+    line-height: 1;
+  }
+  
+  .nav-buttons {
+    display: flex;
+    gap: 55px;
+    align-items: center;
+  }
+  
+  .nav-buttons button {
+    font-family: 'Aclonica', sans-serif;
+    font-size: 30px;
+    background: transparent;
+    border: none;
+    color: #9f5255;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+  
+  .nav-buttons button:hover {
+    color: #6f3437;
+  }
+  

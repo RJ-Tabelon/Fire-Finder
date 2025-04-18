@@ -1,0 +1,25 @@
+.loader {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: #FFF8E6;
+    padding-bottom: 118px;
+    text-align: center;
+  }
+  
+  .loader-text {
+    font-family: 'Aclonica', sans-serif;
+    font-size: 17px;
+    margin-top: 0;
+    color: #9f5255;
+  }
+  
+  .loader-gif {
+    width: 110px;
+    height: auto;
+    display: block;
+  }
+  
