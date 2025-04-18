@@ -19,21 +19,27 @@ export const createReport = async (req, res) => {
     }
 };
 
-// export const deleteUser = async (req, res) => {
-//     const { id } = req.params;
+export const deleteReport = async (req, res) => {
+    const { id } = req.params;
 
-//     if (!mongoose.Types.ObjectId.isValid(id)) {
-//         return res.status(404).json({ succcess: false, message: "USER NOT FOUND"});
-//     }
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(400).json({ succcess: false, message: "INVALID ID"});
+    }
 
-//     try {
-//         await User.findByIdAndDelete(id);
-//         res.status(200).json({ success: true, message: "USER DELETED"});
-//     } catch (error) {
-//         console.log("ERROR IN DELETING PRODUCT:", error.message);
-//         res.status(500).json({ success: false, message: "SERVER ERROR"});
-//     }
-// };
+    const existingReport = await Report.findById(id);
+
+    if (!existingReport) {
+        return res.status(404).json({ succcess: false, message: "REPORT NOT FOUND"});
+    }
+
+    try {
+        await Report.findByIdAndDelete(id);
+        res.status(200).json({ success: true, message: "REPORT DELETED"});
+    } catch (error) {
+        console.log("ERROR IN DELETING REPORT:", error.message);
+        res.status(500).json({ success: false, message: "SERVER ERROR"});
+    }
+};
 
 // export const getUsers = async (req, res) => {
 //     try {
