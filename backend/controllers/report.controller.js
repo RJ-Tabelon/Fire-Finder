@@ -51,22 +51,28 @@ export const getReports = async (req, res) => {
     }
 };
 
-// export const updateUser = async (req, res) => {
-//     const { id } = req.params;
+export const updateReport = async (req, res) => {
+    const { id } = req.params;
 
-//     const user = req.body;
+    const report = req.body;
 
-//     if (!mongoose.Types.ObjectId.isValid(id)) {
-//         return res.status(404).json({ succcess: false, message: "USER NOT FOUND"});
-//     }
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).json({ succcess: false, message: "INVALID ID"});
+    }
 
-//     try {
-//         const updatedUser = await User.findByIdAndUpdate(id, user, {new: true});
-//         res.status(200).json({ success: true, data: updatedUser});
-//     } catch (error) {
-//         res.status(500).json({ success: false, message: "SERVER ERROR"});
-//     }
-// };
+    const existingReport = await Report.findById(id);
+
+    if (!existingReport) {
+        return res.status(404).json({ succcess: false, message: "REPORT NOT FOUND"});
+    }
+
+    try {
+        const updatedReport = await Report.findByIdAndUpdate(id, report, {new: true});
+        res.status(200).json({ success: true, data: updatedReport});
+    } catch (error) {
+        res.status(500).json({ success: false, message: "SERVER ERROR"});
+    }
+};
 
 // export const loginUser = async (req, res) => {
 //     const { name, password } = req.body;
