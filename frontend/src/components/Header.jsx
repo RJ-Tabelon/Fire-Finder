@@ -23,7 +23,7 @@ const Header = () => {
           <button onClick={() => navigate('/map')} className={location.pathname === '/map' ? 'active-nav' : ''} >Home</button>
           <button onClick={() => navigate('/firesafety')} className={location.pathname === '/firesafety' ? 'active-nav' : ''} >Fire Safety</button>
           <button onClick={() => navigate('/about')} className={location.pathname === '/about' ? 'active-nav' : ''} >About</button>
-          <button>Settings</button>
+          <button onClick={() => navigate('/settings')} className={location.pathname === '/settings' ? 'active-nav' : ''} >Settings</button>
         </nav>
       </div>
     </header>
