@@ -1,0 +1,155 @@
+.form-container {
+    font-family: 'Aclonica', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 45px;
+    height: 100vh;
+    width: 100vw;
+    background-color: #ffdbb6;
+  }
+  
+  .signup-container {
+    background-color: #FFF8E6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    overflow: hidden;
+    padding-top: 160px;
+  }
+  
+  .signup-container .form-box {
+    background-color: #FFD6AC;
+  }
+  
+  .form-signup-wrapper {
+    margin: 50px 0 10px;
+  }
+  
+  .signup-heading {
+    font-family: 'Aclonica', sans-serif;
+    font-size: 3rem;
+    color: #9F5255;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+  }
+  
+  .form-signup-text {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px #9f5255;
+  }
+  
+  .signup-link {
+    color: #9F5255;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+    text-shadow: none;
+  }
+  
+  .signup-link:hover {
+    color: #6f3437;
+  }
+  
+  .form-box,
+  .signup-form-box {
+    padding: 30px 40px 15px;
+    border-radius: 20px;
+    border: 2px solid #9f5255;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    width: 550px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #FFD6AC;
+  }
+  
+  .logo-container {
+    margin: 15px 0 40px;
+  }
+  
+  .form-style {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+  }
+  
+  .form-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #FFF8E6;
+    background-color: #FFF8E6;
+    border-radius: 8px;
+    font-family: 'Aclonica', sans-serif;
+    font-size: 16px;
+    color: #9F5255;
+  }
+  
+  .form-input::placeholder,
+  .signup-container .form-input::placeholder {
+    color: #9F5255A1;
+  }
+  
+  .signup-container .form-signup-text {
+    color: #ffffff;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px #9f5255;
+  }
+  
+  .form-input:focus {
+    outline: none;
+    border-color: #9f5255;
+    box-shadow: 0 0 5px rgba(159, 82, 85, 0.5);
+  }
+  
+  .form-button {
+    width: 150px;
+    border-radius: 8px;
+    border: none;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #9F5255;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.25s;
+  }
+  
+  .form-button:hover {
+    background-color: #6f3437;
+  }
+  
+  .form-message-success,
+  .form-message-error {
+    font-family: 'Aclonica', sans-serif;
+    font-size: 14px;
+    margin-top: 40px;
+  }
+  
+  .form-message-success {
+    color: #3b873e;
+  }
+  
+  .form-message-error {
+    color: #ef3838;
+  }
+  
+  h1.monofett {
+    font-family: 'Monofett', cursive;
+    font-size: 8rem;
+    color: #9F5255;
+    text-align: center;
+    line-height: 1;
+  }
+  
