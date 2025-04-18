@@ -22,7 +22,7 @@ const Header = () => {
         <nav className="nav-buttons"> {/* Navigation buttons */}
           <button onClick={() => navigate('/map')} className={location.pathname === '/map' ? 'active-nav' : ''} >Home</button>
           <button onClick={() => navigate('/firesafety')} className={location.pathname === '/firesafety' ? 'active-nav' : ''} >Fire Safety</button>
-          <button>About</button>
+          <button onClick={() => navigate('/about')} className={location.pathname === '/about' ? 'active-nav' : ''} >About</button>
           <button>Settings</button>
         </nav>
       </div>
