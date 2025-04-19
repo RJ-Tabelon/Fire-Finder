@@ -11,43 +11,54 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header.jsx';
 import '../styles/settings.css';
 
-function SettingsPage({ username = 'johndoe', userLocation, onSetUserLocation }) {
+function SettingsPage({ onSetUserLocation }) {
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
+  const [message, setMessage] = useState('');
+  const [messageColor, setMessageColor] = useState('');
   const navigate = useNavigate();
+
+  const storedUser = JSON.parse(localStorage.getItem('user'));
+  const storedUserLocation = storedUser?.location;
+  const username = storedUser?.name?.toLowerCase() || '';
 
   const handleSetLocation = async () => {
     const latNum = parseFloat(latitude);
     const lngNum = parseFloat(longitude);
 
     if (isNaN(latNum) || isNaN(lngNum)) {
-      alert('Please enter valid numbers for latitude and longitude.');
+      setMessage('INVALID LOCATION !');
+      setMessageColor('red');
       return;
     }
 
-    const locationData = {
-      name: `(${latNum}, ${lngNum})`,
-      lat: latNum,
-      lng: lngNum,
-    };
-
     try {
-      await fetch('http://localhost:5001/api/users/location', {
-        method: 'POST',
+      const res = await fetch('http://localhost:5001/api/users/location', {
+        method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, location: locationData }),
+        body: JSON.stringify({ name: username, lat: latNum, lng: lngNum }),
       });
 
-      onSetUserLocation(locationData);
-      alert('Location saved and set!');
-      navigate('/map');
+      const data = await res.json();
+
+      if (data.success) {
+        localStorage.setItem('user', JSON.stringify(data.data));       
+        onSetUserLocation({ name: `(${latNum}, ${lngNum})`, lat: latNum, lng: lngNum });
+        setMessage('LOCATION UPDATED SUCCESSFULLY !');
+        setMessageColor('green');
+      } else {
+        setMessage(data.message || 'INVALID LOCATION !');
+        setMessageColor('red');
+      }
     } catch (err) {
-      console.error('Error updating location:', err);
-      alert('Failed to save location');
+      setMessage('SERVER ERROR');
+      setMessageColor('red');
     }
   };
 
   const handleLogout = () => {
+    localStorage.removeItem('user');
+    localStorage.removeItem('userLocation');
     navigate('/');
   };
 
@@ -60,7 +71,13 @@ function SettingsPage({ username = 'johndoe', userLocation, onSetUserLocation })
         <h3>Account Information</h3>
         <div className="account-info">
           <p><strong>Username:</strong> <span className="capitalize">{username}</span></p>
-          <p><strong>Location:</strong> <span className="capitalize">{userLocation?.name || 'Not set'}</span></p>
+          <p><strong>Location:</strong> 
+            <span className="capitalize">
+              {(storedUserLocation?.lat != null && storedUserLocation?.lng != null)
+                ? ` (${storedUserLocation.lat}, ${storedUserLocation.lng})`
+                : ' NOT SET'}
+            </span>
+          </p>
         </div>
 
         <div className="set-location">
@@ -88,6 +105,11 @@ function SettingsPage({ username = 'johndoe', userLocation, onSetUserLocation })
       <div className="logout-section">
         <button className="logout-button" onClick={handleLogout}>Log Out</button>
       </div>
+      {message && (
+        <p className={messageColor === 'green' ? 'settings-message-success' : 'settings-message-error'}>
+          {message}
+        </p>
+      )}  
     </div>
   );
 }
