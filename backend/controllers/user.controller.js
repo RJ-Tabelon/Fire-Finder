@@ -2,7 +2,10 @@ import mongoose from "mongoose";
 import User from "../models/User.js";
 
 export const createUser = async (req, res) => {
-    const user = req.body;
+    const user = {
+        ...req.body,
+        name: req.body.name.toLowerCase().trim(), 
+      };
 
     if (!user.name || !user.password) {
         return res.status(400).json({ success: false, message: "PLEASE PROVIDE ALL REQUIRED FIELDS !"});
@@ -29,7 +32,7 @@ export const deleteUser = async (req, res) => {
     const { id } = req.params;
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(404).json({ succcess: false, message: "USER NOT FOUND"});
+        return res.status(404).json({ success: false, message: "USER NOT FOUND"});
     }
 
     try {
@@ -57,7 +60,7 @@ export const updateUser = async (req, res) => {
     const user = req.body;
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(404).json({ succcess: false, message: "USER NOT FOUND"});
+        return res.status(404).json({ success: false, message: "USER NOT FOUND"});
     }
 
     try {
@@ -72,14 +75,14 @@ export const loginUser = async (req, res) => {
     const { name, password } = req.body;
   
     if (!name || !password) {
-      return res.status(400).json({ success: false, message: "MISSING CREDENTIALS ❌" });
+      return res.status(400).json({ success: false, message: "MISSING CREDENTIALS !" });
     }
   
     try {
-      const user = await User.findOne({ name });
+      const user = await User.findOne({ name }).lean();
   
       if (!user || user.password !== password) {
-        return res.status(401).json({ success: false, message: "INAVLID CREDENTIALS ❌" });
+        return res.status(401).json({ success: false, message: "INAVLID CREDENTIALS !" });
       }
   
       res.status(200).json({ success: true, message: "LOGIN SUCCESSFUL", data: user });
@@ -88,4 +91,35 @@ export const loginUser = async (req, res) => {
       res.status(500).json({ success: false, message: "SERVER ERROR" });
     }
   };
+
+  export const updateLocation = async (req, res) => {
+    try {
+      const rawName = req.body.name;
+      const name = rawName?.trim().toLowerCase(); 
+      const lat = parseFloat(req.body.lat);
+      const lng = parseFloat(req.body.lng);
+  
+      if (!name || isNaN(lat) || isNaN(lng)) {
+        return res.status(400).json({ success: false, message: "INVALID LOCATION INPUT" });
+      }
+      
+      // Find the user first
+      const user = await User.findOne({ name: name });
+      
+      if (!user) {
+        return res.status(404).json({ success: false, message: "USER NOT FOUND" });
+      }
+      
+      // Set the location directly and save
+      user.location = { lat, lng };
+      await user.save();
+      
+      res.status(200).json({ success: true, message: "LOCATION UPDATED", data: user });
+    } catch (error) {
+      console.error("UPDATE LOCATION ERROR:", error.message, error.stack);
+      res.status(500).json({ success: false, message: "SERVER ERROR" });
+    }
+  };
+  
+  
   
