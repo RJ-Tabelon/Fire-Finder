@@ -60,7 +60,7 @@ const Map = ({ eventData, userLocation }) => {
     <div style={{ position: 'relative' }}>
       <GoogleMap
         mapContainerStyle={containerStyle} // Apply size
-        center={userLocation}             // Start position
+        center={(userLocation && userLocation.lat && userLocation.lng) ? userLocation : defaultCenter} // Start position
         zoom={5}                            // Zoom level
         onLoad={onMapLoad}                 // Hook to get the map reference
         options={{                         // Map configuration
