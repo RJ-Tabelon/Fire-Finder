@@ -103,7 +103,7 @@ const Map = ({ eventData, userLocation }) => {
         {/* If a marker is selected, show its info window */}
         {locationInfo && (
           <InfoWindow
-            position={{ lat: 39.8283, lng: -98.5795 }}
+            position={{ lat: locationInfo.lat, lng: locationInfo.lng }}
             onCloseClick={() => setLocationInfo(null)}
           >
             <LocationInfoBox info={locationInfo} />
