@@ -26,7 +26,9 @@ function SettingsPage({ onSetUserLocation }) {
     const latNum = parseFloat(latitude);
     const lngNum = parseFloat(longitude);
 
-    if (isNaN(latNum) || isNaN(lngNum)) {
+    if (isNaN(latNum) || isNaN(lngNum) || 
+	latNum < -90 || latNum > 90 ||
+	lngNum < -180 || lngNum > 180) {
       setMessage('INVALID LOCATION !');
       setMessageColor('red');
       return;
