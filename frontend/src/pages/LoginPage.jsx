@@ -51,7 +51,9 @@ function LoginPage() {
       setMessage(`WELCOME, ${capitalizedName} !`);
   
       // Redirect to map page after 1 second delay
-      setTimeout(() => navigate('/map'), 1000);
+      setTimeout(() => {
+        window.location.href = '/map';
+      }, 1000);
     } catch (err) {
       setMessage(err.response?.data?.message || 'LOGIN FAILED');
     }
