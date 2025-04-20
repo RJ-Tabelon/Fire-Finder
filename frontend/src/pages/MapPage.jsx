@@ -12,7 +12,7 @@ import Map from '../components/Map.jsx'; // Component to display map and markers
 import Loader from '../components/Loader.jsx'; // Shows loading spinner and text
 import Header from '../components/Header.jsx'; // Displays title and nav bar
 
-function MapPage({ eventData, loading }) {
+function MapPage({ eventData, loading, userLocation }) {
   return (
     <div style={{ height: '100vh', width: '100vw' }}>
       {/* Show Loader while loading is true, else show header + map */}
@@ -21,7 +21,7 @@ function MapPage({ eventData, loading }) {
       ) : (
         <>
           <Header />
-          <Map eventData={eventData} /> {/* Pass fetched data to Map */}
+          <Map eventData={eventData} userLocation={userLocation} /> {/* Pass fetched data to Map */}
         </>
       )}
     </div>
