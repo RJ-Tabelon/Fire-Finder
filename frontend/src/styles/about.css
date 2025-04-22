@@ -1,0 +1,108 @@
+.about-page {
+    background-color: #FFF8E6;
+    min-height: 100vh;
+    font-family: 'Aclonica', sans-serif;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Main text content container */
+  .about-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 140px 20px 40px;
+    flex: 1;
+  }
+  
+  /* Top heading */
+  .about-content h2 {
+    color: #9F5255;
+    text-align: center;
+    font-size: 3.3rem;
+    margin-bottom: 30px;
+    letter-spacing: 1.1px;
+    white-space: nowrap;
+  }
+  
+  /* About paragraph under heading */
+  .about-overview {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    margin-bottom: 50px;
+    color: #444;
+    letter-spacing: 0.8px;
+    text-align: center;
+  }
+  
+  /* Team section heading */
+  .team-section h3 {
+    color: #ffdbb6;
+    font-size: 3.3rem;
+    margin: 40px 0 30px;
+    letter-spacing: 1px;
+    text-align: center;
+  }
+  
+  /* Box containing the team */
+  .team-section {
+    background-color: #9f5255;
+    padding: 0 0 100px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    margin: -45px auto 0px auto;
+    border: 2px solid #9f5255;
+    transition: box-shadow 0.3s ease;
+    width: 100%;
+  }
+  
+  /* Hover box shadow */
+  .team-section:hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Grid layout for team members */
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 30px;
+    justify-items: center;
+    text-align: center;
+  }
+  
+  /* Individual member layout */
+  .team-member {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Name styling */
+  .team-member p {
+    font-size: 1.2rem;
+    color: #ffdbb6;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    text-align: center;
+  }
+  
+  /* Circle photo styling */
+  .team-photo {
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ffdbb6;
+    margin-bottom: 10px;
+  }
+  
+  /* Image alignment per person */
+  .rj-photo {
+    object-position: center 80%;
+  }
+  
+  .brian-photo,
+  .asha-photo,
+  .dia-photo {
+    object-position: center 10%;
+  }
+  

@@ -1,139 +1,60 @@
-import { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+// ─────────────────────────────────────────────────────────────
+// App.jsx
+// ─────────────────────────────────────────────────────────────
+// PURPOSE:
+// This is the main application component for a React-based web app.
+// It sets up client-side routing using React Router. It defines
+// LoginPage, SignUpPage, MapPage, etc.
+//
+// The "Router" wraps the entire app so that users can navigate
+// to different pages without refreshing the browser. Each "Route"
+// matches a specific path and renders the appropriate component.
+// ─────────────────────────────────────────────────────────────
 
-// Shared full-page center container
-const containerStyle = {
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  height: '100vh',
-  width: '100vw',
-  flexDirection: 'column',
-  backgroundColor: '#f9f9f9',
-};
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Import routing tools from React Router
+import { useState, useEffect } from 'react';
+import LoginPage from './pages/LoginPage.jsx';    // Login page component
+import SignUpPage from './pages/SignUpPage.jsx';  // Sign-up page component
+import MapPage from './pages/MapPage.jsx';        // Map page component
+import FireSafetyPage from './pages/FireSafetyPage.jsx'; // Fire Safety Page component
+import AboutPage from './pages/AboutPage.jsx';
+import SettingsPage from './pages/SettingsPage.jsx';
+import './index.css';                             // Import global styles
 
-const formStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  gap: '10px',
-  width: '300px',
-};
-
-// Login Component
-function Home() {
-  const navigate = useNavigate();
-  const [form, setForm] = useState({ name: '', password: '' });
-  const [message, setMessage] = useState('');
-
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await axios.post('http://localhost:5001/api/users/login', form);
-      setMessage(`✅ Welcome, ${res.data.data.name}`);
-      setTimeout(() => navigate('/map'), 1000); // redirect after brief delay
-    } catch (err) {
-      setMessage(err.response?.data?.message || '❌ Login failed');
-    }
-  };
-
-  return (
-    <div style={containerStyle}>
-      <h1>Fire Finder🔥</h1>
-      <form onSubmit={handleLogin} style={formStyle}>
-        <input
-          name="name"
-          placeholder="Username"
-          onChange={handleChange}
-          style={{ width: '100%', padding: '10px' }}
-        />
-        <input
-          name="password"
-          type="password"
-          placeholder="Password"
-          onChange={handleChange}
-          style={{ width: '100%', padding: '10px' }}
-        />
-        <button type="submit" style={{ padding: '10px 20px' }}>Login</button>
-      </form>
-      <button onClick={() => navigate('/signup')} style={{ marginTop: '20px' }}>
-        Create Account
-      </button>
-      {message && <p style={{ marginTop: '15px' }}>{message}</p>}
-    </div>
-  );
-}
-
-// Signup Component
-function SignUp() {
-  const [form, setForm] = useState({ name: '', password: '' });
-  const [message, setMessage] = useState('');
-  const navigate = useNavigate();
-
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await axios.post('http://localhost:5001/api/users', form);
-      setMessage('✅ Account created successfully!');
-      setTimeout(() => navigate('/'), 1500);
-    } catch (err) {
-      setMessage(err.response?.data?.message || '❌ Error creating account');
-    }
-  };
-
-  return (
-    <div style={containerStyle}>
-      <h2>Create an Account</h2>
-      <form onSubmit={handleSubmit} style={formStyle}>
-        <input
-          name="name"
-          placeholder="Username"
-          onChange={handleChange}
-          style={{ width: '100%', padding: '10px' }}
-        />
-        <input
-          name="password"
-          type="password"
-          placeholder="Password"
-          onChange={handleChange}
-          style={{ width: '100%', padding: '10px' }}
-        />
-        <button type="submit" style={{ padding: '10px 20px' }}>Sign Up</button>
-      </form>
-      {message && <p style={{ marginTop: '15px' }}>{message}</p>}
-    </div>
-  );
-}
-
-// Map Page
-function MapPage() {
-  return (
-    <div style={containerStyle}>
-      <h2>This is where our map should be 🗺️</h2>
-    </div>
-  );
-}
-
-// App Router
 function App() {
+  const [eventData, setEventData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [loggedInUser, setLoggedInUser] = useState(null);
+  const [userLocation, setUserLocation] = useState(null);
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    const location = JSON.parse(localStorage.getItem('userLocation'));
+    if (user) setLoggedInUser(user);
+    if (location) setUserLocation(location);
+      const fetchEvents = async () => {
+      setLoading(true);
+      const res = await fetch('https://eonet.gsfc.nasa.gov/api/v2.1/events');
+      const { events } = await res.json();
+      setEventData(events);
+      setLoading(false);
+    };
+
+    fetchEvents();
+  }, []); // fetch once
+
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/map" element={<MapPage />} />
+    <Router> {/* The Router enables page navigation without full reloads */}
+      <Routes> {/* Routes holds all the different paths and their corresponding pages */}
+        <Route path="/" element={<LoginPage />} />       {/* Root path loads LoginPage */}
+        <Route path="/signup" element={<SignUpPage />} /> {/* '/signup' loads SignUpPage */}
+        <Route path="/map" element={<MapPage eventData={eventData} loading={loading} userLocation={userLocation}/>} />       {/* '/map' loads the MapPage */}
+        <Route path="/firesafety" element={<FireSafetyPage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/settings" element={<SettingsPage username={loggedInUser?.name} userLocation={userLocation} onSetUserLocation={setUserLocation}/>} />
       </Routes>
     </Router>
   );
 }
 
-export default App;
+export default App; // Export the App component for use in main.jsx
