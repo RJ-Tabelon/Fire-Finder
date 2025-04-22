@@ -73,25 +73,3 @@ export const updateReport = async (req, res) => {
         res.status(500).json({ success: false, message: "SERVER ERROR"});
     }
 };
-
-// export const loginUser = async (req, res) => {
-//     const { name, password } = req.body;
-  
-//     if (!name || !password) {
-//       return res.status(400).json({ success: false, message: "MISSING CREDENTIALS ❌" });
-//     }
-  
-//     try {
-//       const user = await User.findOne({ name });
-  
-//       if (!user || user.password !== password) {
-//         return res.status(401).json({ success: false, message: "INAVLID CREDENTIALS ❌" });
-//       }
-  
-//       res.status(200).json({ success: true, message: "LOGIN SUCCESSFUL", data: user });
-//     } catch (error) {
-//       console.error("LOGIN ERROR:", error.message);
-//       res.status(500).json({ success: false, message: "SERVER ERROR" });
-//     }
-//   };
-  
