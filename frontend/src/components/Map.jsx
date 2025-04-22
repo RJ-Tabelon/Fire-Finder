@@ -22,6 +22,27 @@ const containerStyle = {
 // Default center of the map (center of the US)
 const defaultCenter = { lat: 39.8283, lng: -98.5795 };
 
+// https://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula
+function getDistanceInMiles(lat1, lon1, lat2, lon2) {
+  const R = 6371; // Radius of the Earth in km
+  const dLat = deg2rad(lat2 - lat1);
+  const dLon = deg2rad(lon2 - lon1);
+  const a = 
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+    Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  const d = R * c; // Distance in km
+  return d * 0.621371; // Convert to miles
+}
+
+// https://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula
+function deg2rad(deg) {
+  return deg * (Math.PI / 180);
+}
+
+
 const Map = ({ eventData, userLocation }) => {
   const [locationInfo, setLocationInfo] = useState(null); // Holds selected fire info
   const mapRef = useRef(null); // Reference to the map instance
@@ -61,7 +82,7 @@ const Map = ({ eventData, userLocation }) => {
       <GoogleMap
         mapContainerStyle={containerStyle} // Apply size
         center={(userLocation && userLocation.lat && userLocation.lng) ? userLocation : defaultCenter} // Start position
-        zoom={5}                            // Zoom level
+        zoom={7}                            // Zoom level
         onLoad={onMapLoad}                 // Hook to get the map reference
         options={{                         // Map configuration
           fullscreenControl: true,
@@ -80,6 +101,7 @@ const Map = ({ eventData, userLocation }) => {
           },
         }}
       >
+
         {/* Filter only wildfire events (category ID 8) and place markers */}
         {eventData
           .filter(ev => ev.categories[0].id === 8)
@@ -90,13 +112,24 @@ const Map = ({ eventData, userLocation }) => {
               ? [ev.title.split(',')[0].trim(), ev.title.split(',').slice(1).join(',').trim()]
               : [ev.title, 'Unknown Location'];
 
+	    const isNearby = userLocation && getDistanceInMiles(userLocation.lat, userLocation.lng, lat, lng) <= 30;
+
             return (
-              <LocationMarker
+              <Marker
                 key={index}
-                lat={lat}
-                lng={lng}
+                position={{ lat, lng }}
                 onClick={() => handleMarkerClick(ev, lat, lng, fireName, fireLocation)}
-              />
+                icon={isNearby 
+		  ? {
+		      url: 'https://api.iconify.design/mdi:fire.svg?color=red',
+		      scaledSize: { width: 40, height: 40 }
+	            }
+		  : {
+		      url: 'https://api.iconify.design/mdi:fire.svg?color=orange',
+		      scaledSize: { width: 40, height: 40 }
+		    }
+		}
+	      />
             );
           })}
 
@@ -109,7 +142,9 @@ const Map = ({ eventData, userLocation }) => {
             <LocationInfoBox info={locationInfo} />
           </InfoWindow>
         )}
-        {userLocation && userLocation.lat && userLocation.lng && (
+
+	{/* Place user marker */}
+	{userLocation && userLocation.lat && userLocation.lng && (
         <Marker 
 	    position={{ lat: userLocation.lat, lng: userLocation.lng }}
 	    icon={{
