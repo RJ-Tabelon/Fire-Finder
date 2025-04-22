@@ -13,6 +13,14 @@ const userSchema = new mongoose.Schema({
         lat: { type: Number, default: null },
         lng: { type: Number, default: null },
     },
+    latitude: {
+        type: String,
+        required: false
+    },
+    longitude: {
+        type: String,
+        required: false
+    },
 }, {
     timestamps: true
 });
