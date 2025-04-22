@@ -18,14 +18,21 @@ import SignUpPage from './pages/SignUpPage.jsx';  // Sign-up page component
 import MapPage from './pages/MapPage.jsx';        // Map page component
 import FireSafetyPage from './pages/FireSafetyPage.jsx'; // Fire Safety Page component
 import AboutPage from './pages/AboutPage.jsx';
+import SettingsPage from './pages/SettingsPage.jsx';
 import './index.css';                             // Import global styles
 
 function App() {
   const [eventData, setEventData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [loggedInUser, setLoggedInUser] = useState(null);
+  const [userLocation, setUserLocation] = useState(null);
 
   useEffect(() => {
-    const fetchEvents = async () => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    const location = JSON.parse(localStorage.getItem('userLocation'));
+    if (user) setLoggedInUser(user);
+    if (location) setUserLocation(location);
+      const fetchEvents = async () => {
       setLoading(true);
       const res = await fetch('https://eonet.gsfc.nasa.gov/api/v2.1/events');
       const { events } = await res.json();
@@ -41,9 +48,10 @@ function App() {
       <Routes> {/* Routes holds all the different paths and their corresponding pages */}
         <Route path="/" element={<LoginPage />} />       {/* Root path loads LoginPage */}
         <Route path="/signup" element={<SignUpPage />} /> {/* '/signup' loads SignUpPage */}
-        <Route path="/map" element={<MapPage eventData={eventData} loading={loading} />} />       {/* '/map' loads the MapPage */}
+        <Route path="/map" element={<MapPage eventData={eventData} loading={loading} userLocation={userLocation}/>} />       {/* '/map' loads the MapPage */}
         <Route path="/firesafety" element={<FireSafetyPage />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/settings" element={<SettingsPage username={loggedInUser?.name} userLocation={userLocation} onSetUserLocation={setUserLocation}/>} />
       </Routes>
     </Router>
   );

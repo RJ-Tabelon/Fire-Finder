@@ -28,19 +28,33 @@ function LoginPage() {
 
   // Handles login when form is submitted
   const handleLogin = async (e) => {
-    e.preventDefault(); // Prevent page refresh on form submit
+    e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5001/api/users/login', form); // POST to login route
-
-      const name = res.data.data.name; // Extract name from response
-      const capitalizedName = name.charAt(0).toUpperCase() + name.slice(1); // Capitalize first letter
-
-      setMessage(`🌲 WELCOME, ${capitalizedName} !`); // Show welcome message
-
+      const res = await axios.post('http://localhost:5001/api/users/login', form);
+      const userData = res.data.data;
+      
+      // Store user data in localStorage
+      localStorage.setItem('user', JSON.stringify(userData));
+      
+      // Handle location data if it exists
+      if (userData.location && userData.location.lat && userData.location.lng) {
+        const locationData = {
+          name: `(${userData.location.lat}, ${userData.location.lng})`,
+          lat: userData.location.lat,
+          lng: userData.location.lng
+        };
+        localStorage.setItem('userLocation', JSON.stringify(locationData));
+      }
+  
+      const name = userData.name;
+      const capitalizedName = name.toUpperCase();
+      setMessage(`WELCOME, ${capitalizedName} !`);
+  
       // Redirect to map page after 1 second delay
-      setTimeout(() => navigate('/map'), 1000);
+      setTimeout(() => {
+        window.location.href = '/map';
+      }, 1000);
     } catch (err) {
-      // Show error message if login fails
       setMessage(err.response?.data?.message || 'LOGIN FAILED');
     }
   };
@@ -82,10 +96,11 @@ function LoginPage() {
 
       {/* Show message only if it exists */}
       {message && (
-        <p className={message.startsWith('🌲') ? 'form-message-success' : 'form-message-error'}>
+        <p className={message.startsWith('WELCOME') ? 'form-message-success' : 'form-message-error'}>
           {message}
         </p>
       )}
+      
     </div>
   );
 }

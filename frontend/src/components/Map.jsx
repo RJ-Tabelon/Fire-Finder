@@ -8,7 +8,7 @@
 // and filters for wildfire data only (category ID 8).
 // ─────────────────────────────────────────────────────────────
 
-import { GoogleMap, useJsApiLoader, InfoWindow } from '@react-google-maps/api';
+import { GoogleMap, useJsApiLoader, InfoWindow, Marker } from '@react-google-maps/api';
 import LocationMarker from './LocationMarker.jsx';
 import LocationInfoBox from './LocationInfoBox.jsx';
 import { useState, useRef } from 'react';
@@ -22,7 +22,7 @@ const containerStyle = {
 // Default center of the map (center of the US)
 const defaultCenter = { lat: 39.8283, lng: -98.5795 };
 
-const Map = ({ eventData }) => {
+const Map = ({ eventData, userLocation }) => {
   const [locationInfo, setLocationInfo] = useState(null); // Holds selected fire info
   const mapRef = useRef(null); // Reference to the map instance
 
@@ -60,7 +60,7 @@ const Map = ({ eventData }) => {
     <div style={{ position: 'relative' }}>
       <GoogleMap
         mapContainerStyle={containerStyle} // Apply size
-        center={defaultCenter}             // Start position
+        center={(userLocation && userLocation.lat && userLocation.lng) ? userLocation : defaultCenter} // Start position
         zoom={5}                            // Zoom level
         onLoad={onMapLoad}                 // Hook to get the map reference
         options={{                         // Map configuration
@@ -109,6 +109,15 @@ const Map = ({ eventData }) => {
             <LocationInfoBox info={locationInfo} />
           </InfoWindow>
         )}
+        {userLocation && userLocation.lat && userLocation.lng && (
+        <Marker 
+	    position={{ lat: userLocation.lat, lng: userLocation.lng }}
+	    icon={{
+              url: 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+              scaledSize: { width: 40, height: 40 }
+            }}
+	  />
+	)}
       </GoogleMap>
     </div>
   ) : null; // If the map hasn't loaded, render nothing

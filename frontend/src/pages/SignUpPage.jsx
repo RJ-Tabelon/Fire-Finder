@@ -26,11 +26,11 @@ function SignUpPage() {
     e.preventDefault();
     try {
       await axios.post('http://localhost:5001/api/users', form); // Send user data to backend
-      setMessage('🌲 ACCOUNT CREATED SUCCESSFULLY !');
+      setMessage('ACCOUNT CREATED SUCCESSFULLY !');
       setTimeout(() => navigate('/'), 1500); // Go to login after delay
     } catch (err) {
       // Show error message if sign-up fails
-      setMessage(err.response?.data?.message || 'ERROR CREATING ACCOUNT ❌');
+      setMessage(err.response?.data?.message || 'ERROR CREATING ACCOUNT !');
     }
   };
 
@@ -65,7 +65,7 @@ function SignUpPage() {
 
       {/* Show response message */}
       {message && (
-        <p className={message.startsWith('🌲') ? 'form-message-success' : 'form-message-error'}>
+        <p className={message.startsWith('ACCOUNT') ? 'form-message-success' : 'form-message-error'}>
           {message}
         </p>
       )}
