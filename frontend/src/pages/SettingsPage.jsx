@@ -20,7 +20,8 @@ function SettingsPage({ onSetUserLocation }) {
 
   const storedUser = JSON.parse(localStorage.getItem('user'));
   const storedUserLocation = storedUser?.location;
-  const username = storedUser?.name?.toLowerCase() || '';
+  const username = storedUser?.name || '';
+  // ?.toLowerCase() || '';
 
   const handleSetLocation = async () => {
     const latNum = parseFloat(latitude);
@@ -34,14 +35,17 @@ function SettingsPage({ onSetUserLocation }) {
       return;
     }
 
+    // TO DO: Fix call to users/location/:id to avoid security issue of checking for passed-in username rather than unique ID
     try {
-      const res = await fetch('http://localhost:5001/api/users/location', {
+      const res = await fetch('http://localhost:5001/api/users/location/:id', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name: username, lat: latNum, lng: lngNum }),
       });
 
       const data = await res.json();
+
+      // TO DO: Fix bug that prevents display of valid or invalid location
 
       if (data.success) {
         localStorage.setItem('user', JSON.stringify(data.data));       
