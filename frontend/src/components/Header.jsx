@@ -20,6 +20,7 @@ const Header = () => {
       <div className="header-container"> {/* Inner container with layout */}
         <h1>Fire Finder</h1> {/* App name */}
         <nav className="nav-buttons"> {/* Navigation buttons */}
+          <button onClick={() => navigate('/report')} className={location.pathname === '/report' ? 'active-nav' : ''} >Report Fire</button>
           <button onClick={() => navigate('/map')} className={location.pathname === '/map' ? 'active-nav' : ''} >Home</button>
           <button onClick={() => navigate('/firesafety')} className={location.pathname === '/firesafety' ? 'active-nav' : ''} >Fire Safety</button>
           <button onClick={() => navigate('/about')} className={location.pathname === '/about' ? 'active-nav' : ''} >About</button>

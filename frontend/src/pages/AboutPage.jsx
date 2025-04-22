@@ -12,6 +12,7 @@ import { useBodyScroll } from '../hooks/useBodyScroll';
 import '../styles/about.css';
 import brianImage from '../assets/Brian.jpeg';
 import rjImage from '../assets/RJ.jpeg';
+import ashaImage from '../assets/Asha.jpeg'
 
 function AboutPage() {
   useEffect(() => {
@@ -23,7 +24,7 @@ function AboutPage() {
     { name: 'Dia Fallon', image: brianImage },
     { name: 'RJ Tabelon', image: rjImage },
     { name: 'Brian Paz', image: brianImage },
-    { name: 'Asha Miller', image: brianImage }
+    { name: 'Asha Miller', image: ashaImage }
   ];
 
   useBodyScroll(true);
