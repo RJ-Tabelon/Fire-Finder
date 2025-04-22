@@ -8,6 +8,7 @@
 
 import Header from '../components/Header.jsx';
 import { useEffect } from 'react';
+import { useBodyScroll } from '../hooks/useBodyScroll';
 import '../styles/about.css';
 import brianImage from '../assets/Brian.jpeg';
 import rjImage from '../assets/RJ.jpeg';
@@ -24,6 +25,8 @@ function AboutPage() {
     { name: 'Brian Paz', image: brianImage },
     { name: 'Asha Miller', image: brianImage }
   ];
+
+  useBodyScroll(true);
 
   return (
     <div className="about-page">

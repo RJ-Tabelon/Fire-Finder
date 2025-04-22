@@ -19,6 +19,7 @@ import MapPage from './pages/MapPage.jsx';        // Map page component
 import FireSafetyPage from './pages/FireSafetyPage.jsx'; // Fire Safety Page component
 import AboutPage from './pages/AboutPage.jsx';
 import SettingsPage from './pages/SettingsPage.jsx';
+import ReportPage from './pages/ReportPage.jsx'; //Report page component
 import './index.css';                             // Import global styles
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
         <Route path="/map" element={<MapPage eventData={eventData} loading={loading} userLocation={userLocation}/>} />       {/* '/map' loads the MapPage */}
         <Route path="/firesafety" element={<FireSafetyPage />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/report" element={<ReportPage />} />
         <Route path="/settings" element={<SettingsPage username={loggedInUser?.name} userLocation={userLocation} onSetUserLocation={setUserLocation}/>} />
       </Routes>
     </Router>
