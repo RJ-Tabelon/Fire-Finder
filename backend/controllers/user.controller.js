@@ -4,7 +4,8 @@ import User from "../models/User.js";
 export const createUser = async (req, res) => {
     const user = {
         ...req.body,
-        name: req.body.name.toLowerCase().trim(), 
+        name: req.body.name.trim(),
+        // .toLowerCase().trim(), 
       };
 
     if (!user.name || !user.password) {
@@ -92,10 +93,14 @@ export const loginUser = async (req, res) => {
     }
   };
 
+  // TO DO: Fix bug that prevents success or failure message from appearing in frontend
+  // TO DO: Fix security issue that results in passed-in username being used rather than unique profile ID
   export const updateLocation = async (req, res) => {
     try {
-      const rawName = req.body.name;
-      const name = rawName?.trim().toLowerCase(); 
+      // const rawName = req.body.name;
+      // const name = rawName?.trim();
+      const name = req.body.name;
+      //.toLowerCase(); 
       const lat = parseFloat(req.body.lat);
       const lng = parseFloat(req.body.lng);
   
@@ -104,7 +109,8 @@ export const loginUser = async (req, res) => {
       }
       
       // Find the user first
-      const user = await User.findOne({ name: name });
+      const user = await User.findOne({ name });
+      //({ name: name });
       
       if (!user) {
         return res.status(404).json({ success: false, message: "USER NOT FOUND" });

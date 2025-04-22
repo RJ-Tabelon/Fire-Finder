@@ -7,7 +7,8 @@ router.post("/login", loginUser);
 router.post("/", createUser);
 router.get("/", getUsers);
 router.delete("/:id", deleteUser);
-router.put("/location", updateLocation);
+// TO DO: Fix security flaw that results in updateLocation using passed-in username rather than unique ID
+router.put("/location/:id", updateLocation);
 router.put("/:id", updateUser);
 
 export default router;
