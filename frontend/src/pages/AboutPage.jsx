@@ -12,7 +12,8 @@ import { useBodyScroll } from '../hooks/useBodyScroll';
 import '../styles/about.css';
 import brianImage from '../assets/Brian.jpeg';
 import rjImage from '../assets/RJ.jpeg';
-import ashaImage from '../assets/Asha.jpeg'
+import ashaImage from '../assets/Asha.jpeg';
+import diaImage from '../assets/Dia.jpeg';
 
 function AboutPage() {
   useEffect(() => {
@@ -21,7 +22,7 @@ function AboutPage() {
   }, []);
 
   const team = [
-    { name: 'Dia Fallon', image: brianImage },
+    { name: 'Dia Fallon', image: diaImage },
     { name: 'RJ Tabelon', image: rjImage },
     { name: 'Brian Paz', image: brianImage },
     { name: 'Asha Miller', image: ashaImage }
